@@ -27,7 +27,7 @@ DESC
   s.homepage         = 'https://github.com/signalfx/splunk-otel-ios.git'
   s.license          = { :type => "Apache", :file => 'LICENSE' }
   s.author           = { 'Splunk' => 'www.splunk.com' }
-  s.source           = { :git => 'https://github.com/signalfx/splunk-otel-ios.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/hmvr414/splunk-otel-ios.git', :branch => 'startStopInstrumentation121' }
 # Make sure the deployment target matches with Package.swift
   s.ios.deployment_target = '11.0'
   s.source_files = 'SplunkRumWorkspace/SplunkRum/SplunkRum/**/*.swift'
