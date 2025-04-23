@@ -324,7 +324,7 @@ var splunkRumInitializeCalledTime = Date()
 
     @discardableResult
     @objc internal class func create(beaconUrl: String, rumAuth: String, appName: String?, options: SplunkRumOptions) -> Bool {
-	print("Running modified version")
+	print("Running modified version with pause/resume feature")
         guard Thread.isMainThread else {
             print("SplunkRum: Please call SplunkRum.create only on the main thread")
             return false
