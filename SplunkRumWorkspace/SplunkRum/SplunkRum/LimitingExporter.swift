@@ -48,6 +48,9 @@ class LimitingExporter: SpanExporter {
 
     // Returns true if span should be rejected
     func filter(_ span: SpanData) -> SpanData? {
+        if SplunkRum.isPaused() {
+            return nil
+        }
         if spanFilter != nil {
             return spanFilter!(span)
         }

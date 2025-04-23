@@ -37,6 +37,11 @@ public struct BatchSpanProcessor: SpanProcessor {
         if !span.context.traceFlags.sampled {
             return
         }
+        
+        if SplunkRum.isPaused() {
+            return
+        }
+        
         worker.addSpan(span: span)
     }
 

@@ -165,6 +165,9 @@ extension URLSessionTask {
             return
         }
 
+        if SplunkRum.isPaused() {
+            return
+        }
         startHttpSpan(request: currentRequest).map { span in
             objc_setAssociatedObject(self, &ASSOC_KEY_SPAN, span, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
         }

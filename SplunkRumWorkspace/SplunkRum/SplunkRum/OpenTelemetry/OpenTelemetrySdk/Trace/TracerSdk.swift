@@ -16,7 +16,7 @@ public class TracerSdk: Tracer {
     }
 
     public func spanBuilder(spanName: String) -> SpanBuilder {
-        if sharedState.hasBeenShutdown {
+        if sharedState.hasBeenShutdown || SplunkRum.isPaused() {
             return DefaultTracer.instance.spanBuilder(spanName: spanName)
         }
         return SpanBuilderSdk(spanName: spanName,

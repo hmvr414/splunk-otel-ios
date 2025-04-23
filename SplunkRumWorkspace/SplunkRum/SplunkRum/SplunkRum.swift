@@ -212,7 +212,8 @@ var splunkRumInitializeCalledTime = Date()
     static var initializing = false
     static var configuredOptions: SplunkRumOptions?
     static var theBeaconUrl: String?
-
+    private static var _isPaused: Bool = false
+    
     /**
             Initialization function.  Call as early as possible in your application, but only on the main thread.
                 - Parameter beaconUrl: Destination for the captured data.
@@ -414,6 +415,22 @@ var splunkRumInitializeCalledTime = Date()
         return true
 
     }
+    
+    @objc public class func pause() {
+        _isPaused = true
+        print("📡 Splunk RUM paused")
+    }
+
+    @objc public class func resume() {
+        _isPaused = false
+        print("🚀 Splunk RUM resumed")
+    }
+
+    @objc public class func isPaused() -> Bool {
+        return _isPaused
+    }
+
+
 
     /**
             Query for the current session ID.  Session IDs can change during the usage of the app so caching this result is not advised.

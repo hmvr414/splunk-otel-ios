@@ -33,7 +33,7 @@ public class TracerProviderSdk: TracerProvider {
     }
 
     public func get(instrumentationName: String, instrumentationVersion: String? = nil) -> Tracer {
-        if sharedState.hasBeenShutdown {
+        if sharedState.hasBeenShutdown || SplunkRum.isPaused() {
             return DefaultTracer.instance
         }
 

@@ -33,12 +33,18 @@ public struct MultiSpanProcessor: SpanProcessor {
     }
 
     public func onStart(parentContext: SpanContext?, span: ReadableSpan) {
+        if SplunkRum.isPaused() {
+            return
+        }
         spanProcessorsStart.forEach {
             $0.onStart(parentContext: parentContext, span: span)
         }
     }
 
     public func onEnd(span: ReadableSpan) {
+        if SplunkRum.isPaused() {
+            return
+        }
         for var processor in spanProcessorsEnd {
             processor.onEnd(span: span)
         }

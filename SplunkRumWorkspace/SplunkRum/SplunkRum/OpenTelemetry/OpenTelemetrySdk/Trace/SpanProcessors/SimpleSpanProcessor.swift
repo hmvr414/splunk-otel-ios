@@ -19,6 +19,9 @@ public struct SimpleSpanProcessor: SpanProcessor {
     public func onStart(parentContext: SpanContext?, span: ReadableSpan) {}
 
     public mutating func onEnd(span: ReadableSpan) {
+        if SplunkRum.isPaused() {
+            return
+        }
         if sampled, !span.context.traceFlags.sampled {
             return
         }
